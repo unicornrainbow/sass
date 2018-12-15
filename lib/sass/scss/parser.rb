@@ -850,6 +850,11 @@ module Sass
           return unless name = interp_ident
           name = [name] if name.is_a?(String)
         end
+        while tok(/,/)
+          multiprop = true
+          ss
+          name += [',', interp_ident]
+        end
         if comment = tok(COMMENT)
           name << comment
         end
@@ -861,6 +866,10 @@ module Sass
         require_block = tok?(/\{/)
 
         node = node(Sass::Tree::PropNode.new(name.flatten.compact, value, :new))
+
+        if multiprop
+          node = node(Sass::Tree::MultiPropNode.new(name.flatten.compact, value, :new))
+        end
 
         return node unless require_block
         nested_properties! node, space

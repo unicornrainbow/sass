@@ -131,6 +131,24 @@ class Sass::Tree::Visitors::ToCss < Sass::Tree::Visitors::Base
     end
   end
 
+  def visit_multiprop(node)
+    return if node.resolved_value.empty?
+    tab_str = '  ' * (@tabs + node.tabs)
+    names = node.resolved_name.split(',')
+    values = node.resolved_value.split(',').map(&:strip)
+    n,v = [names,values].map(&:length)
+    values *= n/v + [n%v,1].min
+    q = names.zip(values)
+    props = q.map do |name, value|
+      if node.style == :compressed
+        "#{tab_str}#{name}:#{value}"
+      else
+        "#{tab_str}#{name}: #{value};"
+      end
+    end
+    props.join("\n")
+  end
+
   def visit_rule(node)
     with_tabs(@tabs + node.tabs) do
       rule_separator = node.style == :compressed ? ',' : ', '
