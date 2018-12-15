@@ -369,6 +369,8 @@ class Sass::Tree::Visitors::Perform < Sass::Tree::Visitors::Base
     yield
   end
 
+  alias :visit_multiprop :visit_prop
+
   # Returns the value of the expression.
   def visit_return(node)
     throw :_sass_return, node.expr.perform(@environment)

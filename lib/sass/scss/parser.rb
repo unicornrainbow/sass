@@ -975,6 +975,11 @@ module Sass
           return unless name
           name = [name] if name.is_a?(String)
         end
+        while tok(/,/)
+          multiprop = true
+          ss
+          name += [',', interp_ident]
+        end
         if (comment = tok(COMMENT))
           name << comment
         end
@@ -991,6 +996,11 @@ module Sass
                     name_start_pos, value_end_pos)
         node.name_source_range = range(name_start_pos, name_end_pos)
         node.value_source_range = range(value_start_pos, value_end_pos)
+
+        if multiprop
+          node = node(Sass::Tree::MultiPropNode.new(name.flatten.compact, value, :new),
+                    name_start_pos, value_end_pos)
+        end
 
         return node unless require_block
         nested_properties! node, space
