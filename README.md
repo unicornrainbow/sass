@@ -1,12 +1,5 @@
-## Ruby Sass Has Reached End-of-Life
 
-Ruby Sass should no longer be used, and will no longer be receiving any updates.
-See [the Sass blog][], and consider switching to the [`sassc` gem].
-
-[the Sass blog]: https://sass-lang.com/blog/posts/7828841
-[`sassc` gem]: https://rubygems.org/gems/sassc
-
-# Sass [![Travis Build Status](https://travis-ci.org/sass/ruby-sass.svg?branch=next)](https://travis-ci.org/sass/ruby-sass) [![Gem Version](https://badge.fury.io/rb/sass.svg)](http://badge.fury.io/rb/sass) [![Inline docs](http://inch-ci.org/github/sass/sass.svg)](http://inch-ci.org/github/sass/sass)
+# Sass [![Travis Build Status](https://travis-ci.org/unicornrainbow/sass.svg)](https://travis-ci.org/sass/ruby-sass) [![Gem Version](https://badge.fury.io/rb/sass.svg)](http://badge.fury.io/rb/sass) [![Inline docs](http://inch-ci.org/github/unicornrainbow/sass.svg)](http://inch-ci.org/github/unicornrainbow/sass)
 
 **Sass makes CSS fun again**. Sass is an extension of CSS,
 adding nested rules, variables, mixins, selector inheritance, and more.
@@ -145,7 +138,7 @@ $margin: 16px;
 Even more powerful than variables,
 mixins allow you to re-use whole chunks of CSS,
 properties or selectors.
-You can even give them arguments. 
+You can even give them arguments.
 
 ```scss
 @mixin table-scaffolding {
